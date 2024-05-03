@@ -1,0 +1,5 @@
+[[annotation]]
+file="clinvar_chr_corrected.vcf.gz"
+fields=["ID","CLNSIG","CLNDN","CLNVC","CLNREVSTAT", "AF_TGP"]
+names=["ID","CLNSIG","CLNDN","CLNVC","CLNREVSTAT", "AF_TGP"]
+ops=["self","self","self","self","self","self"]

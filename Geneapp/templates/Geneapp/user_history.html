@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'static/webfonts' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'js\jquery.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js\bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js\jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js\sb-admin-2.min.js' %}"></script> -->
+    <title>GeneAssure</title>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#000435">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <!-- <div class="sidebar-brand-text mx-3">GeneSpectrum</div> -->
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images\Logo_rework.png' %}" alt="logo"
+                        style="max-width: 100%; max-height: 100%;" />
+                </div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/index/">
+                    <i class="fas fa-fw fa-house-user"></i>
+                    <span>Home</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/data_analysis/">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Files</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="/selectworkflow/">
+                    <i class="fas fa-fw fa-dna"></i>
+                    <span>Germline</span>
+                </a>
+                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-dna"></i>
+                    <span>Germline</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/wes/">Whole Exome Sequencing</a>
+                        <a class="collapse-item" href="/tngs/">Targeted NGS</a>
+                        <a class="collapse-item" href="/wgs/">Whole Genome Sequencing</a>
+
+
+                    </div>
+                </div> -->
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/wes/">
+                    <i class="fas fa-ribbon"></i>
+                    <span>Whole Exome Sequencing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tngs/">
+                    <i class="fas fa-fw fa-stethoscope"></i>
+                    <span>Targeted NGS</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-medkit"></i>
+                    <span>Pharmacogenomics</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="http://54.145.241.43/app/GeneAssureGx" target="_blank">
+                    <i class="fas fa-seedling"></i>
+                    <span>RNASeq</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://3.215.57.143/app/GeneAssureSGx" target="_blank">
+                    <i class="fa fa-disease"></i>
+                    <span>Single Cell RNASeq</span>
+                </a>
+            </li> -->
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/user_history/">
+                    <i class="fas fa-fw fa-history"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Admin</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="/login/">Login</a>
+                        <a class="collapse-item" href="/register/">Register</a>
+                        <a class="collapse-item" href="/forgot/">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="#">404 Page</a>
+                        <a class="collapse-item" href="#">Blank Page</a>
+                    </div>
+                </div>
+            </li> -->
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    // Toggle the sidebar when the button is clicked
+                    $("#sidebarToggle").click(function () {
+                        $("body").toggleClass("sidebar-toggled");
+                        $(".sidebar").toggleClass("toggled");
+                    });
+                });
+            </script>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 mw-100">
+                        <img src="{% static 'images\GeneAssure-removebg-preview.png' %}" alt="Logo" class="logo-image">
+                    </div>
+                    <style>
+                        .logo-image {
+                            max-width: 30%;
+                            max-height: 30%;
+                        }
+                    </style>
+
+                    <div class="ml-5">
+                        <div class="dropdown d-inline" style="text-align: center;">
+                            <!-- Display selected project name here -->
+                            {% if selected_project_name %}
+                            <span class="nav-link d-inline-block text-gray-600 small">{{ selected_project_name }}</span>
+                            {% endif %}
+                        </div>
+                        <!-- <div class="dropdown d-inline">
+                            <a id="createProjectLink" class="dropdown nav-link d-inline-block text-gray-600 small"
+                                href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Create Project
+                            </a>
+                        </div> -->
+                        <div class="dropdown d-inline ml-5">
+                            <a id="ProjectList" class="dropdown-toggle nav-link d-inline-block text-gray-600 small"
+                                href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Project List
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {% for project in projects %}
+                                <a class="dropdown-item"
+                                    href="{% url 'user_history_with_project' project.id %}">{{project.name}} - {{project.id}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <script>
+                            function selectProject(projectText) {
+                                document.getElementById("ProjectList").textContent = projectText;
+                                // You can perform any additional actions here based on the selected project
+                            }
+                        </script>
+                    </div>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-lg-inline text-gray-600 small">
+                                    Welcome, {{ user.first_name }} {{ user.last_name }}
+                                    <!-- Display user's first name and last name -->
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-header">
+                                    <h6>Hi, {{ user.first_name }} {{ user.last_name }}</h6>
+                                </div>
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/" onclick="logoutAndRedirect()">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </nav>
+                <!-- End of Topbar -->
+
+
+
+                <h3 class="text-center mt-4 mb-4" style="color: black;"><b> Analysis</b></h3>
+                <div class="container">
+                    <div class="row mb-3 justify-content-end" style="padding-top: 20px;">
+                        <div class="col-auto">
+                            <input type="text" id="searchInput" class="form-control mb-3" placeholder="🔍 Search here...">
+                        </div>
+                        <div class="col-auto">
+                            <a href="/selectworkflow/"><button id="addNewProjectBtn" class="btn btn-primary float-right mb-3">Add New Project</button></a>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive" style="font-weight: bold; color: black;">
+                        <table class="table table-bordered table-striped" id="userhistorytable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Project ID/Name</th>
+                                    <th>Workflow ID</th>
+                                    <th>Workflow Name</th>
+                                    <th>Workflow Type</th>
+                                    <th>User</th>
+                                    <th>Workflow Submission Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in history_data %}
+                                <tr>
+                                    <td>{{ entry.project }}</td>
+                                    <td><a>{{ entry.workflow_id }}</a></td>
+                                    <td><a href="{% url 'workflow_details' entry.id %}">{{ entry.workflow_name }}</a>
+                                    </td>
+                                    <td>{{ entry.workflow_type }}</td>
+                                    <td><a href="/profile/">{{ entry.user.full_name }}</a></td>
+                                    <td style="color: #000;">{{ entry.workflow_submission_time }}</td>
+                                    <td>
+                                        {% if entry.last_status == None %}
+                                        <span style="color: orange; font-weight: bold;">RUNNING</span>
+                                        {% elif entry.last_status == 'completed' %}
+                                        <span style="color: #2ecc71; font-weight: bold;">COMPLETED</span>
+                                        {% elif entry.last_status == 'ABORTED' %}
+                                        <span style="color: #e74c3c; font-weight: bold;">ABORTED</span>
+                                        {% elif 'Error: HTTP Error 404: Not Found' in entry.last_status %}
+                                        <i class="fas fa-circle-notch fa-spin" style="color: #f39c12;"></i>RUNNING
+                                        {% elif entry.last_status == 'ERROR' %}
+                                        <span style="color: red; font-weight: bold;">ERROR</span>
+                                        {% elif entry.last_status == 'error' %}
+                                        <span style="color: red; font-weight: bold;">FAILED</span>
+                                        {% else %}
+                                        {{ entry.last_status }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        // DataTable initialization
+                        var dataTable = $('#userhistorytable').DataTable();
+                
+                        // Search functionality
+                        $('#searchInput').on('keyup', function () {
+                            dataTable.search(this.value).draw();
+                        });
+                
+                        // Add New Project button functionality
+                        $('#addNewProjectBtn').on('click', function () {
+                            // Implement your logic to add a new project here
+                            // For example, you can open a modal to add a new project
+                        });
+                    });
+                </script>
+
+
+
+                <script>
+                    // JavaScript for table search functionality
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const searchInput = document.getElementById('searchInput');
+                        const table = document.getElementById('userhistorytable').getElementsByTagName('tbody')[0];
+
+                        searchInput.addEventListener('input', function() {
+                            const searchValue = this.value.toLowerCase();
+                            const rows = table.getElementsByTagName('tr');
+
+                            Array.from(rows).forEach(row => {
+                                const cells = row.getElementsByTagName('td');
+                                let found = false;
+
+                                Array.from(cells).forEach(cell => {
+                                    const cellText = cell.textContent.toLowerCase();
+                                    if (cellText.includes(searchValue)) {
+                                        found = true;
+                                    }
+                                });
+
+                                if (found) {
+                                    row.style.display = '';
+                                } else {
+                                    row.style.display = 'none';
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+
+
+
+                <style>
+                    
+
+                    .container {
+                        margin-top: 30px;
+                        background-color: #ffffff ;
+                    }
+
+                    .table-responsive {
+                        overflow-x: auto;
+                    }
+
+                    /* Add some 3D effect and hover animations */
+                    .table th,
+                    .table td {
+                        border: 2px solid #111112;
+                        transition: background-color 0.3s;
+                    }
+
+                    .table th {
+                        border: 2px solid #111112;
+                        background-color: #007bff;
+                       
+                    }
+
+                    .table tbody tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+
+                    .table tbody tr:hover {
+                        background-color: #efe5d2;
+                    }
+
+                    /* Add some spacing for better readability */
+                    .mt-4 {
+                        margin-top: 1.5rem !important;
+                    }
+
+                    .mb-4 {
+                        margin-bottom: 1.5rem !important;
+                    }
+                </style>
+
+
+
+</body>
+
+</html>

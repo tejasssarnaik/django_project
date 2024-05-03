@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="10"> Auto-refresh every 10 seconds -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'static/webfonts' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'js\jquery.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js\bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js\jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js\sb-admin-2.min.js' %}"></script> -->
+    <title>GeneAssure</title>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#000435">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <!-- <div class="sidebar-brand-text mx-3">GeneSpectrum</div> -->
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images\Logo_rework.png' %}" alt="logo"
+                        style="max-width: 100%; max-height: 100%;" />
+                </div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/index/">
+                    <i class="fas fa-fw fa-house-user"></i>
+                    <span>Home</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/dataanalysis/">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Files</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="/selectworkflow/">
+                    <i class="fas fa-fw fa-dna"></i>
+                    <span>Germline</span>
+                </a>
+                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-dna"></i>
+                    <span>Germline</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/wes/">Whole Exome Sequencing</a>
+                        <a class="collapse-item" href="/tngs/">Targeted NGS</a>
+                        <a class="collapse-item" href="/wgs/">Whole Genome Sequencing</a>
+
+
+                    </div>
+                </div> -->
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/wes/">
+                    <i class="fas fa-ribbon"></i>
+                    <span>Whole Exome Sequencing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tngs/">
+                    <i class="fas fa-fw fa-stethoscope"></i>
+                    <span>Targeted NGS</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-medkit"></i>
+                    <span>Pharmacogenomics</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="http://54.145.241.43/app/GeneAssureGx" target="_blank">
+                    <i class="fas fa-seedling"></i>
+                    <span>RNASeq</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://3.215.57.143/app/GeneAssureSGx" target="_blank">
+                    <i class="fa fa-disease"></i>
+                    <span>Single Cell RNASeq</span>
+                </a>
+            </li> -->
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/user_history/">
+                    <i class="fas fa-fw fa-history"></i>
+                    <span>Analysis</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <script>
+                    $(document).ready(function () {
+                        // Toggle the sidebar when the button is clicked
+                        $("#sidebarToggle").click(function () {
+                            $("body").toggleClass("sidebar-toggled");
+                            $(".sidebar").toggleClass("toggled");
+                        });
+                    });
+                </script>
+            </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Admin</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="/login/">Login</a>
+                        <a class="collapse-item" href="/register/">Register</a>
+                        <a class="collapse-item" href="/forgot/">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="#">404 Page</a>
+                        <a class="collapse-item" href="#">Blank Page</a>
+                    </div>
+                </div>
+            </li> -->
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 mw-100">
+                        <img src="{% static 'images\GeneAssure-removebg-preview.png' %}" alt="Logo" class="logo-image">
+                    </div>
+                    <style>
+                        .logo-image {
+                            max-width: 30%;
+                            max-height: 30%;
+                        }
+                    </style>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-lg-inline text-gray-600 small">
+                                    Welcome, {{ user.first_name }}
+                                    <!-- Display user's first name and last name -->
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-header">
+                                    <h6>Hi, {{ user.first_name }} {{ user.last_name }}</h6>
+                                </div>
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/" onclick="logoutAndRedirect()">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- <style>
+                    .workflow-details-container {
+                        background-color: #f8f9fc;
+                        padding: 20px;
+                        border-radius: 15px;
+                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                        margin-bottom: 30px;
+                    }
+                
+                    .workflow-details-title {
+                        color: #4e73df;
+                        font-size: 28px;
+                        font-weight: bold;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+                
+                    .workflow-details-item {
+                        margin-bottom: 10px;
+                    }
+                
+                    .workflow-details-label {
+                        font-weight: bold;
+                        color: #1a1a1a;
+                    }
+                
+                    .workflow-details-value {
+                        color: #4e73df;
+                    }
+                
+                    
+                </style>
+                
+                <div class="container-fluid workflow-details-container">
+                    <h2 class="workflow-details-title">Workflow Details</h2>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Workflow ID:</span>
+                        <span class="workflow-details-value">{{ entry.workflow_id }}</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">User:</span>
+                        <span class="workflow-details-value">{{ entry.user.full_name }}</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Role:</span>
+                        <span class="workflow-details-value">{{ entry.user.designation }}</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Workflow Name:</span>
+                        <span class="workflow-details-value">{{ entry.workflow_name }}</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Samples:</span>
+                        <span class="workflow-details-value">{{ entry.samples }}</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Status:</span>
+                        <span class="workflow-details-value">Running</span>
+                    </div>
+                    <div class="workflow-details-item">
+                        <span class="workflow-details-label">Workflow Submission Time:</span>
+                        <span class="workflow-details-value">{{ entry.workflow_submission_time }}</span>
+                    </div>
+                    
+                </div> -->
+
+
+                <div class="card shadow mb-2">
+                    <div class="card-body">
+                        <h5 style="text-align: center; color: black;"><b>Workflow Analysis</b></h5>
+                        <hr>
+                        <table class="table table-striped" style="width:100%;text-align:center;">
+                            <tr>
+                                <th>Project ID/Name</th>
+                                <th>Workflow Name</th>
+                                <th>Workflow Type</th>
+                                <th>Reference Genome</th>
+                                <th>Samples Name</th>
+                                <th>Creation</th>
+                                <th>Workflow ID</th>
+                                <th>Detailed Process</th>
+                                <th>Status</th>
+
+                            </tr>
+                            <tr>
+                                <td style="color: black;">{{ entry.project }}</td>
+                                <td style="color: black;">{{ entry.workflow_name }}</td>
+                                <td style="color: black;">{{ entry.workflow_type }}</td>
+                                <td style="color: black;">{{ entry.reference_genome }}</td>
+                                <td style="color: black;">{{ entry.sample_id }}</td>
+                                <td style="color: black;">{{ entry.workflow_submission_time }}</td>
+                                <td style="color: black; font-weight: bold;">{{ entry.workflow_id }}</td>
+                                <td style="color: black;"><button id="toggleButton"
+                                        class="btn btn-primary mt-2">Check</button>
+                                    <p id="message" style="display: none; font-size: small;">Please scroll down</p>
+                                </td>
+                                <td>
+                                    <div class="main-box2" id="main-box2">
+                                        <p style="margin-top: 8px;">
+                                            {% if line_status.VCF_ANNOTATION == 'completed' %}
+                                            <strong style="color: green;">Completed</strong>
+                                            {% elif line_status.VCF_ANNOTATION == 'error' %}
+                                            <strong style="color:red;">Failed</strong>
+                                            {% elif line_status.VCF_ANNOTATION == 'running' %}
+                                            <strong style="color:orange;">Running</strong>
+                                            {% else %}
+                                            <span style="color: #3498db; font-weight: bold;">RUNNING</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <div class="container" {% if line_status.VCF_ANNOTATION == 'completed' %} style="display: none;" {% else %}
+                    style="display: block;" {% endif %}>
+                        <!-- Main box -->
+
+                        <h7 style="color: black;"><b>Process&#129095;</b></h7>
+                        <div class="main-box" id="main-box">
+                            <h7 style="color: black;"><b>{{ message }}</b></h7>
+                            <style>
+                                /* Horizontal Progress Bar CSS */
+                                .stepper-wrapper {
+                                    margin-top: auto;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    margin-bottom: 20px;
+                                }
+
+                                .stepper-item {
+                                    position: relative;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    flex: 1;
+                                }
+
+                                .stepper-item .step-counter {
+                                    position: relative;
+                                    z-index: 5;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 50%;
+                                    background: #ccc;
+                                    margin-bottom: 6px;
+                                }
+
+                                .stepper-item.completed .step-counter {
+                                    background-color: #4bb543;
+                                }
+
+                                .stepper-item.completed::after {
+                                    position: absolute;
+                                    content: "";
+                                    border-bottom: 2px solid black;
+                                    width: 100%;
+                                    top: 20px;
+                                    left: 50%;
+                                    z-index: 3;
+                                }
+
+                                .stepper-item:first-child::before {
+                                    content: none;
+                                }
+
+                                .stepper-item:last-child::after {
+                                    content: none;
+                                }
+                            </style>
+
+                            <div class="stepper-wrapper">
+                                <div
+                                    class="stepper-item {% if line_status.MAPPING == 'completed' %}completed{% endif %}">
+                                    <div class="step-counter {% if line_status.MAPPING == 'completed' %}completed{% endif %}"
+                                        style="background-color: {% if line_status.MAPPING == 'running' %} orange; {% elif line_status.MAPPING == 'error' %} red; {% else %} none; {% endif %}">
+                                        {% if line_status.MAPPING == 'completed' %}
+                                        ✔
+                                        {% elif line_status.MAPPING == 'running' %}
+                                        <span
+                                            style="display: flex; margin-top: 315%; color: orange; margin-left: 83px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        {% elif line_status.MAPPING == 'error' %}
+                                        ✖
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-name">MAPPING</div>
+                                    {% if line_status.MAPPING == 'completed' %}
+                                    <strong style="color: green;">Completed</strong>
+                                    {% elif line_status.MAPPING == 'error' %}
+                                    <strong style="color:red;">Failed</strong>
+                                    {% elif line_status.MAPPING == 'running' %}
+                                    <strong style="color:orange;">Running</strong>
+                                    {% endif %}
+                                </div>
+
+                                <div
+                                    class="stepper-item {% if line_status.BAM_PROCESSING == 'completed' %}completed{% endif %}">
+                                    <div class="step-counter {% if line_status.BAM_PROCESSING == 'completed' %}completed{% endif %}"
+                                        style="background-color: {% if line_status.BAM_PROCESSING == 'running' %} orange; {% elif line_status.BAM_PROCESSING == 'error' %} red; {% else %} none; {% endif %}">
+                                        {% if line_status.BAM_PROCESSING == 'completed' %}
+                                        ✔
+                                        {% elif line_status.BAM_PROCESSING == 'running' %}
+                                        <span
+                                            style="display: flex; margin-top: 315%; color: orange; margin-left: 83px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        {% elif line_status.BAM_PROCESSING == 'error' %}
+                                        ✖
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-name">BAM PROCESSING</div>
+                                    {% if line_status.BAM_PROCESSING == 'completed' %}
+                                    <strong style="color: green;">Completed</strong>
+                                    {% elif line_status.BAM_PROCESSING == 'error' %}
+                                    <strong style="color:red; ">Failed</strong>
+                                    {% elif line_status.BAM_PROCESSING == 'running' %}
+                                    <strong style="color:orange;">Running</strong>
+                                    {% endif %}
+                                </div>
+
+                                <div
+                                    class="stepper-item {% if line_status.VCF_CALLING == 'completed' %}completed{% endif %}">
+                                    <div class="step-counter {% if line_status.VCF_CALLING == 'completed' %}completed{% endif %}"
+                                        style="background-color: {% if line_status.VCF_CALLING == 'running' %} orange; {% elif line_status.VCF_CALLING == 'error' %} red; {% else %} none; {% endif %}">
+                                        {% if line_status.VCF_CALLING == 'completed' %}
+                                        ✔
+                                        {% elif line_status.VCF_CALLING == 'running' %}
+                                        <span
+                                            style="display: flex; margin-top: 315%; color: orange; margin-left: 83px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        {% elif line_status.VCF_CALLING == 'error' %}
+                                        ✖
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-name">VCF CALLING</div>
+                                    {% if line_status.VCF_CALLING == 'completed' %}
+                                    <strong style="color: green;">Completed</strong>
+                                    {% elif line_status.VCF_CALLING == 'error' %}
+                                    <strong style="color:red;">Failed</strong>
+                                    {% elif line_status.VCF_CALLING == 'running' %}
+                                    <strong style="color:orange;">Running</strong>
+                                    {% endif %}
+                                </div>
+
+                                <div
+                                    class="stepper-item {% if line_status.VCF_PROCESSING == 'completed' %}completed{% endif %}">
+                                    <div class="step-counter {% if line_status.VCF_PROCESSING == 'completed' %}completed{% endif %}"
+                                        style="background-color: {% if line_status.VCF_PROCESSING == 'running' %} orange; {% elif line_status.VCF_PROCESSING == 'error' %} red; {% else %} none; {% endif %}">
+                                        {% if line_status.VCF_PROCESSING == 'completed' %}
+                                        ✔
+                                        {% elif line_status.VCF_PROCESSING == 'running' %}
+                                        <span
+                                            style="display: flex; margin-top: 315%; color: orange; margin-left: 83px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        {% elif line_status.VCF_PROCESSING == 'error' %}
+                                        ✖
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-name">VCF_PROCESSING</div>
+                                    {% if line_status.VCF_PROCESSING == 'completed' %}
+                                    <strong style="color: green;">Completed</strong>
+                                    {% elif line_status.VCF_PROCESSING == 'error' %}
+                                    <strong style="color:red;">Failed</strong>
+                                    {% elif line_status.VCF_PROCESSING == 'running' %}
+                                    <strong style="color:orange;">Running</strong>
+                                    {% endif %}
+                                </div>
+
+                                <div
+                                    class="stepper-item {% if line_status.VCF_ANNOTATION == 'completed' %}completed{% endif %}">
+                                    <div class="step-counter {% if line_status.VCF_ANNOTATION == 'completed' %}completed{% endif %}"
+                                        style="background-color: {% if line_status.VCF_ANNOTATION == 'running' %} orange; {% elif line_status.VCF_ANNOTATION == 'error' %} red; {% else %} none; {% endif %}">
+                                        {% if line_status.VCF_ANNOTATION == 'completed' %}
+                                        ✔
+                                        {% elif line_status.VCF_ANNOTATION == 'running' %}
+                                        <span
+                                            style="display: flex; margin-top: 315%; color: orange; margin-left: 83px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        {% elif line_status.VCF_ANNOTATION == 'error' %}
+                                        ✖
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-name">VCF ANNOTATION</div>
+                                    {% if line_status.VCF_ANNOTATION == 'completed' %}
+                                    <strong style="color: green;">Completed</strong>
+                                    {% elif line_status.VCF_ANNOTATION == 'error' %}
+                                    <strong style="color:red;">Failed</strong>
+                                    {% elif line_status.VCF_ANNOTATION == 'running' %}
+                                    <strong style="color:orange;">Running</strong>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div {% if line_status.VCF_ANNOTATION == 'completed' %} style="display: block;" {% else %}
+                        style="display: none;" {% endif %}>
+                        <div class="container">
+                            <strong style="color: green;">
+                                <center>Process Completed and Output Generated..</center>
+                            </strong>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 text-center bg-primary text-white">
+                                    <h6 class="m-0 font-weight-bold">Output Files</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group">
+                                        {% if fastqc1_path %}
+                                        <!-- File 1 -->
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold">FASTQC Reports</span>
+                                            <div>
+                                                <a href="{% url 'view_file' file_path=fastqc1_path %}"
+                                                    class="badge badge-success" target="_blank">
+                                                    <i class="fas fa-eye"></i>View fastqc1</a>
+                                                <a href="{% url 'view_file' file_path=fastqc2_path %}"
+                                                    class="badge badge-success" target="_blank">
+                                                    <i class="fas fa-eye"></i> View fastqc2
+                                                </a>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% if multiqc_path %}
+                                        <!-- File 2 -->
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold">MULTIQC Reports</span>
+                                            <a href="{% url 'view_file' file_path=multiqc_path %}"
+                                                class="badge badge-success" target="_blank">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if bam_path and bai_path %}
+                                        <!-- File 3 -->
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold">BAM Files</span>
+                                            <div>
+                                                <a href="{% url 'download_file' file_path=bam_path %}"
+                                                    class="badge badge-success"><i class="fas fa-download"></i>Download
+                                                    BAM</a>
+                                                <a href="{% url 'download_file' file_path=bai_path %}"
+                                                    class="badge badge-success"><i class="fas fa-download"></i> Download
+                                                    BAI</a>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% if vcf_path %}
+                                        <!-- File 4 -->
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold">VCF Files</span>
+                                            <div>
+                                                <a href="{% url 'download_file' file_path=vcf_path %}"
+                                                    class="badge badge-success">
+                                                    <i class="fas fa-download"></i> Download vcf
+                                                </a>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        <!-- File 5 -->
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold">Final Reports</span>
+                                            <div>
+                                                <a href="https://geneassure-nf-test-data.s3.amazonaws.com/GA_TEST_DATA/Dummy_html_report/index.html"
+                                                    class="badge badge-success" target="_blank">
+                                                    <i class="fas fa-eye"></i> HTML Reports
+                                                </a>
+                                                <a href="https://geneassure-nf-test-data.s3.amazonaws.com/GA_TEST_DATA/actionable_var/User001_510700.vcf_actionable_variants.txt"
+                                                    class="badge badge-success" target="_blank">
+                                                    <i class="fas fa-eye"></i> Actionable Variants
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="/workflow_details2/{{ entry.workflow_id }}/">
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button class="btn btn-primary" type="button">Check Actionable Variants Table and IGV Result</button>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+
+
+                    <style>
+                        /* Style for the card */
+                        .card {
+                            margin-top: 20px;
+                        }
+
+                        /* Style for the list items */
+                        .list-group-item {
+                            margin-top: 10px;
+                            border: none;
+                        }
+
+                        /* Style for the badge */
+                        .badge {
+                            cursor: pointer;
+                        }
+
+                        /* Style for the download links */
+                        .badge-success {
+                            margin-right: 10px;
+                        }
+
+                        /* Style for the card header */
+                        .card-header {
+                            border-radius: 10px 10px 0 0;
+                        }
+
+                        /* Style for the strong tag */
+                        strong {
+                            font-size: 18px;
+                        }
+                    </style>
+
+
+
+
+
+
+
+
+
+                    <div class="card-body">
+                        <h7 style="color: black;"><b>Detailed Process&#129095;</b></h7>
+
+                        <div class="galog-container mt-3 mb-3" id="galogContent" style="display: none;">
+                            <ul class="list-group" style="list-style-type: none; padding-left: 0;">
+                                {% for line in galog_content %}
+                                <li>{{ line }}</li>
+                                {% endfor %}
+                            </ul>
+                            <a href="{% url 'download_galog' %}?galog_content={{ galog_content|urlencode }}"
+                                class="btn btn-primary mt-3">Download File</a>
+                        </div>
+                    </div>
+
+                    <style>
+                        /* Custom CSS for GALOG content container */
+                        .galog-container {
+                            color: black;
+                            /* font-weight: bold; */
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            padding: 10px;
+                        }
+                    </style>
+
+                    <script>
+                        document.getElementById('toggleButton').addEventListener('click', function () {
+                            var galogContent = document.getElementById('galogContent');
+                            var message = document.getElementById('message');
+                            if (galogContent.style.display === 'none') {
+                                galogContent.style.display = 'block';
+                                message.style.display = 'block';
+                            } else {
+                                galogContent.style.display = 'none';
+                                message.style.display = 'none';
+                            }
+                        });
+                    </script>
+
+
+
+
+
+
+                </div>
+
+
+
+
+                <style>
+                    /* CSS styles Process Details and All Div Main Container */
+                    /* Container styles */
+                    .container {
+                        margin: 20px auto;
+                        max-width: 91%;
+                        background-color: #fff;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        padding: 20px;
+                    }
+
+                    /* Process details table styles */
+                    table {
+
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+
+                    th,
+                    td {
+                        border: 1px solid #ddd;
+                        padding: 10px;
+                        text-align: left;
+                    }
+
+                    th {
+                        background-color: #a2b5ca;
+                        color: #fff;
+                    }
+
+                    tbody tr:hover {
+                        background-color: #f5f5f5;
+                    }
+
+                    .main-box {
+                        border: 3px solid black;
+                        padding: 20px;
+                        background-color: #fdf9f9;
+                    }
+                </style>
+
+
+
+                <script>
+                    // Function to update main box content with fade effect
+                    function updateMainBox() {
+                        $.ajax({
+                            url: window.location.href, // Fetch the current page URL
+                            type: "GET", // HTTP request method
+                            success: function (data) { // Callback function if request succeeds
+                                var mainBoxContent = $(data).find(".main-box").html(); // Extract main box content from response
+                                $("#main-box").fadeOut(10, function () { // Fade out the existing content
+                                    $(this).html(mainBoxContent).fadeIn(10); // Update main box content and fade it in
+                                });
+                            }
+                        });
+                    }
+
+                    // Call updateMainBox function every 8 seconds
+                    $(document).ready(function () {
+                        updateMainBox();
+                        setInterval(updateMainBox, 8000);
+                    });
+                </script>
+
+
+                <script>
+                    // Function to update main box content with fade effect
+                    function updateMainBox2() {
+                        $.ajax({
+                            url: window.location.href, // Fetch the current page URL
+                            type: "GET", // HTTP request method
+                            success: function (data) { // Callback function if request succeeds
+                                var mainBoxContent = $(data).find(".main-box2").html(); // Extract main box content from response
+                                $("#main-box2").fadeOut(10, function () { // Fade out the existing content
+                                    $(this).html(mainBoxContent).fadeIn(10); // Update main box content and fade it in
+                                });
+                            }
+                        });
+                    }
+
+                    // Call updateMainBox function every 8 seconds
+                    $(document).ready(function () {
+                        updateMainBox2();
+                        setInterval(updateMainBox2, 9000);
+                    });
+                </script>
+
+
+
+
+
+                <!-- Include jQuery for JavaScript -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    // Function to update progress bar
+                    function updateProgress() {
+                        var elem = document.getElementById("myBar");
+                        var totalRows = $("#progress-table tr").length;
+                        var progressPercentage = totalRows * 8; // Assuming each line contributes 8% to progress
+
+                        // Limit progressPercentage to 100%
+                        progressPercentage = progressPercentage > 100 ? 100 : progressPercentage;
+
+                        elem.style.width = progressPercentage + '%';
+                        elem.innerHTML = progressPercentage.toFixed(2) + '%';
+
+                        // Highlight specific words
+                        $("#progress-table tr").each(function () {
+                            var line = $(this).text();
+                            if (line.includes("ERROR")) {
+                                $(this).find("td").html(line.replace(/ERROR/g, '<span class="highlight-error">ERROR</span>'));
+                            }
+                            if (line.includes("START")) {
+                                $(this).find("td").html(line.replace(/START/g, '<span class="highlight-start">START</span>'));
+                            }
+                            if (line.includes("END")) {
+                                $(this).find("td").html(line.replace(/END/g, '<span class="highlight-end">END</span>'));
+                            }
+                        });
+                    }
+
+                    // Call updateProgress function every 5 seconds
+                    $(document).ready(function () {
+                        updateProgress();
+                        setInterval(updateProgress, 10);
+                    });
+                </script>
+
+
+
+
+</body>
+
+</html>

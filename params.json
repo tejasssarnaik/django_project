@@ -1,0 +1,22 @@
+{
+    "csv": "s3://geneassure-ref-files-test1/FastqFiles/metadata.csv",
+    "fasta": "s3://geneassure-ref-files-test1/GeneAssure_RefFiles/hg38/hs38DH.fa",
+    "indel": "s3://geneassure-ref-files-test1/GeneAssure_RefFiles/hg38/resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz",
+    "intervalList": "s3://geneassure-ref-files-test1/GeneAssure_RefFiles/hg38/research_sequencing_grch38_bed_agilent.targets.grch38.bed",
+    "ipdir": "s3://geneassure-ref-files-test1/FastqFiles/",
+    "max_cpus": 16,
+    "max_memory": "64.GB",
+    "max_time": "8.h",
+    "output_dir": "s3://geneassure-nf-test-data/GA_TEST_DATA/",
+    "paired" : true,
+    "processid": "GENEASSURE-MAIN",
+    "rglb": "lib1",
+    "rgpl": "ILLUMINA",
+    "rgpu": "unit1",
+    "rgsm": "",
+    "snp": "s3://geneassure-ref-files-test1/GeneAssure_RefFiles/hg38/GCF_000001405.40_sort_chr1_22_XY.vcf.gz",
+    "step": "",
+    "trim" : "",
+    "bed" : "s3://geneassure-ref-files-test1/GeneAssure_RefFiles/hg38/research_sequencing_grch38_bed_agilent.targets.grch38.bed",
+    "skip_steps" : "bam_processing,vcf_calling"
+}

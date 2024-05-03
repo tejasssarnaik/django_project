@@ -1,0 +1,3 @@
+PID,SAMPLEID,FASTQ1,FASTQ2
+2849,SRR19544450,E:/djangoProject/DjangoGeneAssure_30_12/upload/2849/SRR19544450_1.fastq.gz,E:/djangoProject/DjangoGeneAssure_30_12/upload/2849/SRR19544450_1.fastq.gz
+2849,SRR19544450,E:/djangoProject/DjangoGeneAssure_30_12/upload/2849/SRR19544450_2.fastq.gz,E:/djangoProject/DjangoGeneAssure_30_12/upload/2849/SRR19544450_2.fastq.gz

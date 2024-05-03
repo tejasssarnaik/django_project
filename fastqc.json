@@ -1,0 +1,5 @@
+{
+    "csv": "./GeneAssure/fastqc.csv",
+    "outputDir": "~/GENEASSURE_REPORT",
+    "threads": 16
+}

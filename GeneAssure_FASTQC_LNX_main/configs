@@ -1,0 +1,3 @@
+csvFile=/mnt/2TB/Users/Yuvraj/GeneAssure-LNX/GeneAssure_FASTQC_LNX/bin/testData/test_metadata.csv
+outputDir="./GA_FASTQC_OP"
+threads=16

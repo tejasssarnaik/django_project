@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css\styiling.css' %}">
+    <link href="{% static 'css/buttons.css' %}" rel="stylesheet">
+    <title>GeneAssure</title>
+    <style>
+        .button-71 {
+            background-color: #0078d0;
+            border: 0;
+            border-radius: 56px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            outline: 0;
+            padding: 16px 20px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-71:before {
+            background-color: initial;
+            background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+            border-radius: 125px;
+            content: "";
+            height: 50%;
+            left: 4%;
+            opacity: .5;
+            position: absolute;
+            top: 0;
+            transition: all .3s;
+            width: 92%;
+        }
+
+        .button-71:hover {
+            box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 500px) {
+            .button-71 {
+                padding: 12px 40px;
+            }
+        }
+    </style>
+    <style>
+        @media screen and (max-width: 768px) {
+            .upload-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar py-0 navbar-expand-lg navbar-box" style="background-color:#000435">
+        <div class="container-fluid">
+            <img src="{% static 'images\GeneAssure-removebg-preview.png'%}" class="logo-image" alt="" srcset=""
+                style="height: 65px; width: 200px;">
+            <style>
+                .logo-image {
+                    max-width: 30%;
+                    max-height: 30%;
+                }
+            </style>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item ">
+                        <a href="/login/"><button class="button-71" role="button">Login</button>
+                        </a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="card m-4">
+        <div class="About-section-heading">
+            <h2> About GeneAssure </h2>
+        </div>
+        <div class="About-section-Contain">
+            <!-- <h3 style="color: #0078d0;">GeneAssure</h3> -->
+            <p style="font-size: 20px;">GeneAssure is a cutting-edge solution revolutionizing large-scale genomic data
+                analysis. With seamlessly
+                integrated workflows and a user-friendly interface, it empowers users to effortlessly run complex
+                genomic workflows. GeneAssure leverages validated and community-tested tools, ensuring reliability and
+                accuracy. Its scalability and ability to run multiomics workflows position GeneAssure as an invaluable
+                asset for diagnostic labs and life-scienc researchers.
+            </p>
+        </div>
+        <div class="container-fluid" style="display: flex; justify-content: space-between;">
+            <div style="width: 48%; margin-left: 3%;">
+                <h1 style="color: orange;">KEY FEATURES</h1>
+                <ul style="font-size: 20px;">
+                    <li>Versatile NGS Data Analysis</li>
+                    <li>End-to-End Analysis</li>
+                    <li>Tailored Modules for Specialized Analysis</li>
+                    <li>Cloud Integration for Speed and Scalability</li>
+                    <li>User-Friendly Experience</li>
+                </ul>
+            </div>
+            <div style="width: 10cm; margin-right:2%;">
+                <h1 style="color: orange;">BENEFITS</h1>
+                <ul style="font-size: 20px;">
+                    <li>PRECISION AND ACCURACY</li>
+                    <li>TIME EFFICIENCY</li>
+                    <li>SCALABILITY</li>
+                    <li>COMPREHENSIVE REPORT</li>
+                    <li>WEB ACCESSIBLE</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="container">
+        <footer class="foooter d-flex flex-wrap justify-content-between align-items-center mt-1 ml-0"
+            style="background-color:#000435; position: fixed; bottom: 0; left: 0; width: 100%;">
+            <!-- <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p> -->
+            <a target="_blank" href="https://genespectrum.in/"> <img src="{% static 'images\Logo_rework.png' %}"
+                    class=" d-flex align-items-center justify-content-center  link-body-emphasis text-decoration-none"
+                    height="40px" width="150px" alt="" srcset="" style="margin-left: 10%;"> </a>
+
+            <section class=" footer-icons" style="padding: 0% 0% 0% 22% !important;">
+                <!-- Facebook -->
+                <a class="btn btn-link btn-floating btn-lg text-bg-dark " href="https://www.facebook.com/genespectrum"
+                    target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-link btn-floating btn-lg text-bg-dark" href="https://twitter.com/genespectrum"
+                    target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-link btn-floating btn-lg text-bg-dark " href="https://www.instagram.com/genespectrum/"
+                    target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-link btn-floating btn-lg text-bg-dark"
+                    href="https://www.linkedin.com/company/genespectrum" target="_blank" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+            </section>
+            <!-- Section: Social media -->
+
+            <ul class="nav col-md-4 mx-4 justify-content-end">
+                <a class="nav-item" href="tel:917021386045" style="padding: 0px 6px 0px 0px;">+91 7021386045</a> |
+                <a class="nav-item " href="mailto:rarevardb@genespectrum.in" style="padding: 0px 0px 0px 6px;">
+                    geneassure@genespectrum.in</a>
+
+            </ul>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

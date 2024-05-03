@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'static/webfonts' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'js\jquery.min.js' %}"></script>
+    <script src="{% static 'js\bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js\jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js\sb-admin-2.min.js' %}"></script> -->
+
+
+    <title>GeneAssure</title>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5" id="login-card">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                        <!-- Add an attractive background image for both login and registration sections -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user login-form" method="post" action="/login/">
+                                {% csrf_token %}
+                                <!-- Rest of the login form code -->
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control"
+                                        id="exampleInputEmail" aria-describedby="emailHelp"
+                                        placeholder="Enter Email Address..." name="email" required>
+                                </div>
+                                <div class="form-group" style="position: relative;">
+                                    <input type="password" class="form-control form-control" id="exampleInputPassword" placeholder="Password" name="password" required>
+                                    <span toggle="#exampleInputPassword" class="field-icon toggle-password" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer;font-size: 11px;">Show Password</span>
+                                </div>
+                                
+                                <script>
+                                    // JavaScript to toggle password visibility
+                                    document.querySelector('.toggle-password').addEventListener('click', function () {
+                                        const passwordField = document.querySelector(this.getAttribute('toggle'));
+                                
+                                        if (passwordField.type === 'password') {
+                                            passwordField.type = 'text';
+                                            this.textContent = 'Hide Password';
+                                        } else {
+                                            passwordField.type = 'password';
+                                            this.textContent = 'Show Password';
+                                        }
+                                    });
+                                </script>
+                                
+                                
+                                {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Login
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/forgot/">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="#" id="register-toggle">Create an Account!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card o-hidden border-0 shadow-lg my-5" id="register-card" style="display: none;">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                        <!-- Use the same background image for the registration section -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-3">Create an Account!</h1>
+                            </div>
+                            <form class="user register-form" method="post" action="/register/">
+                                {% csrf_token %}
+                                <!-- Rest of the registration form code -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control" id="exampleFirstName"
+                                        aria-label="Full Name" placeholder="Enter your Full Name" name="full_name"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control" id="exampleUsername"
+                                        aria-label="Username" placeholder="Enter your Username" name="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control" id="exampleInputEmail"
+                                        aria-label="Email Address" placeholder="Enter your Email Address" name="email"
+                                        pattern="[a-zA-Z0-9._%+-]+@(gmail\.com|\.in|otherdomain\.com)"
+                                        title="Please enter a valid email address with the specified domains (e.g., @gmail.com, .in, otherdomain.com)" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control" id="exampleInstituteName"
+                                        aria-label="Institute Name" placeholder="Enter your Institute Name" name="institute_name"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control form" id="exampleDesignation" aria-label="Designation" name="designation" required>
+                                        <!-- Removed 'disabled' and 'selected' attributes from this option -->
+                                        <option value="">Select your Designation</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Clinician">Clinician</option>
+                                        <option value="Technician">Technician</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control"
+                                        id="exampleInputPassword" aria-label="Password" placeholder="Enter a Password"
+                                        name="password1" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control"
+                                        id="exampleRepeatPassword" aria-label="Repeat Password"
+                                        placeholder="Repeat your Password" name="password2" required>
+                                    <div id="passwordMatchMessage" class="error"></div>
+                                </div>
+                            
+                                <script>
+                                    const password1 = document.querySelector('input[name="password1"]');
+                                    const password2 = document.querySelector('input[name="password2"]');
+                                    const passwordMatchMessage = document.getElementById('passwordMatchMessage');
+                            
+                                    password2.addEventListener('input', () => {
+                                        if (password1.value !== password2.value) {
+                                            passwordMatchMessage.textContent = 'Passwords do not match. Please enter the same password.';
+                                            password2.classList.add('highlight');
+                                        } else {
+                                            passwordMatchMessage.textContent = '';
+                                            password2.classList.remove('highlight');
+                                        }
+                                    });
+                                </script>
+                                <style>
+                                    .error {
+                                        color: red;
+                                        font-size: 12px; /* You can adjust the font size as needed */
+                                    }
+                                    .highlight {
+                                        border: 1px solid red;
+                                    }
+                                </style>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" required id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        By registering, you agree to <a
+                                            href="https://genespectrum.in/rarevardb-privacy-policy/">Privacy Policy</a>
+                                    </label>
+                                </div> &nbsp;
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/forgot/">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="#" id="login-toggle">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("register-toggle").addEventListener("click", function () {
+            document.getElementById("register-card").style.display = "block";
+            document.getElementById("login-card").style.display = "none";
+        });
+
+        document.getElementById("login-toggle").addEventListener("click", function () {
+            document.getElementById("register-card").style.display = "none";
+            document.getElementById("login-card").style.display = "block";
+        });
+    </script>
+
+    <!-- Your existing styles and CSS code here -->
+    <style>
+        /* Add a background image to the login image column with parallax effect */
+    .bg-login-image {
+        background-image: url("{% static 'images/ezgif_maker.gif' %}");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    
+        /* Apply a 3D effect to the card */
+        .card {
+            transform: perspective(1000px) rotateY(0deg);
+            transition: transform 0.5s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .card:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+    
+        /* Style the login button with a gradient and box shadow */
+        .btn-primary {
+            background: linear-gradient(to right, #FF8C00, #FF4500);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    
+        /* Add a border to the form fields for better visibility */
+        .form-control-user {
+            border: 1px solid #ccc;
+        }
+    
+        /* Add a bioinformatics-related logo or graphic */
+        .bioinformatics-logo {
+            background-image: url('bioinformatics-logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 100px;
+            height: 100px;
+        }
+    
+        /* Add a 3D image or animation related to bioinformatics */
+        .bioinformatics-3d-image {
+            transform: perspective(1000px) rotateY(20deg);
+            transition: transform 1s;
+        }
+    
+        .bioinformatics-3d-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+    </style>
+</body>
+
+</html>

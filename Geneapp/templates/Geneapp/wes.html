@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'static/webfonts' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'js\jquery.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js\bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js\jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js\sb-admin-2.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js/popup.js' %}"> </script> -->
+    <script src="{% static 'js/dropdown.js' %}"> </script>
+    <script src="{% static 'js/workflow.js' %}"> </script>
+    <script src="{% static 'js\selectoption.js' %}"></script>
+    <link href="{% static 'css/buttons.css' %}" rel="stylesheet">
+
+    <title>GeneAssure</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            .upload-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#000435">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index/">
+                <!-- <div class="sidebar-brand-text mx-3">GeneSpectrum</div> -->
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images\Logo_rework.png' %}" alt="logo"
+                        style="max-width: 100%; max-height: 100%;" />
+                </div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/index/">
+                    <i class="fas fa-fw fa-house-user"></i>
+                    <span>Home</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/dataanalysis/">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Files</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="/wgs/">
+                    <i class="fas fa-ribbon"></i>
+                    <span>Whole Genome Sequencing</span>
+                </a> -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-dna"></i>
+                    <span>Germline</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/wes/">Whole Exome Sequencing</a>
+                        <a class="collapse-item" href="/tngs/">Targeted NGS</a>
+                        <a class="collapse-item" href="/wgs/">Whole Genome Sequencing</a>
+
+
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/wes/">
+                    <i class="fas fa-ribbon"></i>
+                    <span>Whole Exome Sequencing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tngs/">
+                    <i class="fas fa-fw fa-stethoscope"></i>
+                    <span>Targeted NGS</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-medkit"></i>
+                    <span>Pharmacogenomics</span>
+                </a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="http://54.145.241.43/app/GeneAssureGx" target="_blank">
+                    <i class="fas fa-seedling"></i>
+                    <span>RNASeq</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://3.215.57.143/app/GeneAssureSGx" target="_blank">
+                    <i class="fa fa-disease"></i>
+                    <span>Single Cell RNASeq</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/user_history/">
+                    <i class="fas fa-fw fa-history"></i>
+                    <span>History</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    // Toggle the sidebar when the button is clicked
+                    $("#sidebarToggle").click(function () {
+                        $("body").toggleClass("sidebar-toggled");
+                        $(".sidebar").toggleClass("toggled");
+                    });
+                });
+            </script>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 mw-100">
+                        <img src="{% static 'images\GeneAssure-removebg-preview.png' %}" alt="Logo" class="logo-image">
+                    </div>
+                    <style>
+                        .logo-image {
+                            max-width: 30%;
+                            max-height: 30%;
+                        }
+                    </style>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-lg-inline text-gray-600 small">
+                                    Welcome, {{ user.first_name }} {{ user.last_name }}
+                                    <!-- Display user's first name and last name -->
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-header">
+                                    <h6>Hi, {{ user.first_name }} {{ user.last_name }}</h6>
+                                </div>
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/" onclick="logoutAndRedirect()">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <div class="mt-3 upload-container ml-3">
+                    <form id="uploadForm" action="/wesdata/" method="post" name="selected_option"
+                        enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3" style="text-align: center;">
+                                <h6 class="m-0 font-weight-bold text-primary">Workflow</h6>
+                            </div>
+
+                            <input type="hidden" name="new_selected_option" id="newSelectedOption">
+
+                            <div class="ml-3">
+                                <label style="margin-right: 30px; color: black;">
+                                    <input type="radio" name="workflow_option" value="Wgs-gem-Hg38"
+                                        onclick="setNewSelectedOption('Wes-gem-Hg38')"> Wes-gem-Hg38
+                                </label>
+                                <!-- <label style="color: black;">
+                                    <input type="radio" name="workflow_option" value="Wgs-som-Hg38"
+                                        onclick="setNewSelectedOption('Wes-som-Hg38')"> Wes-som-Hg38
+                                </label> -->
+                            </div><br>
+                            <div class="form-group row ml-2">
+                                <label for="workflowName" class="col-sm-2 col-form-label">Workflow Name:</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="workflowname" id="workflowName"
+                                        placeholder="Enter workflow name" sty>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3" style="text-align: center;">
+                                <h6 class="m-0 font-weight-bold text-primary">Select Files</h6>
+                            </div>
+                            <div class="container">
+                                <label class="upload-btn button-29">
+                                    FastQ1
+                                    <input type="file" name="fastq1" accept=".fastq, .fastq.gz, .fq, .fq.gz" multiple>
+                                </label>
+                                <br>
+                                <label class="upload-btn button-29">
+                                    FastQ2
+                                    <input type="file" name="fastq2" accept=".fastq, .fastq.gz, .fq, .fq.gz" multiple>
+                                </label>
+                                <!-- <br>
+                                    <label class="upload-btn button-29">
+                                        Known Variant (snp)
+                                        <input type="file" name="known variant" accept=".vcf, .vcf.gz, .bed, .bed.gz, .interval_list" multiple>
+                                    </label>
+                                    <br>
+                                    <label class="upload-btn button-29">
+                                        Known Variant (indel)
+                                        <input type="file" name="known variant1" accept=".vcf, .vcf.gz, .bed, .bed.gz, .interval_list" multiple>
+                                    </label> -->
+                                <br>
+                                <label class="upload-btn button-29">
+                                    BED
+                                    <input type="file" name="bed" accept=".bed, .interval_list" multiple>
+                                </label><br>
+                                <hr>
+                                <input type="hidden" name="selected_option" id="selectedOption">
+                                <div class="ml-2">
+                                    <label style="margin-right: 30px; color: black;">
+                                        <input type="radio" name="reference_genome" value="Hg38"
+                                            onclick="setSelectedOption('Hg38')"> Hg38
+                                    </label>
+                                    <label style="color: black;">
+                                        <input type="radio" name="reference_genome" value="Hg19"
+                                            onclick="setSelectedOption('Hg19')"> Hg19
+                                    </label>
+                                </div>
+                            </div><br>
+                        </div>
+                        <div class="container" style="text-align: center;">
+                            <input class="btn btn-success" type="submit" value="Submit" id="submitButton">
+                        </div>
+                    </form><br><br>
+                </div>
+
+            </div>
+
+
+
+
+
+
+</body>
+
+</html>

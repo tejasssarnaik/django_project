@@ -1,0 +1,240 @@
+from django.urls import reverse
+    
+def wgsdata_view(request):
+    if request.method == 'POST':
+        selected_project_id = request.session.get('selected_project_id')
+        selected_project_name = request.session.get('selected_project_name')
+        workflow_name = request.POST.get('workflowname')
+        workflow_type = request.POST.get('selected_option')
+        fastq_option = request.POST.get('selected_fastq_option')
+        reference_genome = request.POST.get('reference_genome')
+        sample_name = request.POST.get('samplename')
+
+        # Split the fastq_option string into separate filenames
+        fastq_files = fastq_option.split(',')
+
+        # Ensure that there are two files
+        if len(fastq_files) != 2:
+            # Handle the case where there are not exactly two filenames
+            # You can raise an error, redirect, or handle it as needed
+            pass
+
+        # Assign the filenames to separate variables
+        fastq_file1 = fastq_files[0].strip()  # Remove any leading/trailing spaces
+        fastq_file2 = fastq_files[1].strip()  # Remove any leading/trailing spaces
+
+        # Print the individual filenames
+        print(f"First Fastq File: {fastq_file1}")
+        print(f"Second Fastq File: {fastq_file2}")
+
+        # Sample data for CSV
+        pname=selected_project_name
+        pid = (selected_project_name) +'_'+ str(selected_project_id)
+        wid = 1
+        sample_id = sample_name
+        fastq1 = fastq_file1 # Get selected Fastq1 file path
+        fastq2 = fastq_file2 # You will replace this with the actual path
+
+        # CSV data to write
+        csv_data = [
+            ['PID', 'WID', 'SAMPLEID', 'FASTQ1', 'FASTQ2'],
+            [pid, wid, sample_id, fastq1, fastq2],
+        ]
+
+        # File path for the CSV file
+        csv_filename = 'GeneAssure/sample.csv'
+        csv_path = os.path.join(settings.MEDIA_ROOT, csv_filename)
+
+        # Writing CSV data to file
+        with open(csv_path, mode='w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerows(csv_data)
+
+        # Additional logic for saving data to database
+        samples = (len(fastq_files)) // 2
+        creation = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        status = "Running"
+
+        id_counter, created = IDCounter.objects.get_or_create(pk=1)
+
+        project_id = id_counter.increment_project_id()
+        workflow_id = id_counter.increment_workflow_id()
+
+        user_profile = UserProfile.objects.get(user=request.user)
+        history_entry = UserHistory(
+            user=user_profile,
+            project_id=project_id,
+            workflow_id=workflow_id,
+            task_performance_time=datetime.now(),
+            workflow_submission_time=datetime.now(),
+            workflow_type=workflow_type,
+            workflow_name=workflow_name,
+            samples=samples,
+            sample_id=sample_id,
+            status=status,
+        )
+        history_entry.save()
+
+        obj = Workflow(
+            Configuration=workflow_type,
+            Workflow_name=workflow_name,
+            Samples=samples,
+            Creation=creation,
+            Status=status,
+            Workflow_ID=workflow_id,
+            sample_id=sample_id
+        )
+        obj.save()
+
+        return redirect(reverse('workflow_details', kwargs={'Workflow_ID': workflow_id}))
+    else:
+        return HttpResponse("Only POST requests are allowed!")
+
+
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        <div class="container">
+            <h2 class="text-center mt-4 mb-4">User History Details</h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Project</th>
+                            <th>Workflow ID</th>
+                            <th>Workflow Name</th>
+                            <th>Workflow Type</th>
+                            <th>User</th>
+                            <th>Workflow Submission Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in history_data %}
+                        <tr>
+                            <td>{{ entry.project }}</td>
+                            <td><a>{{ entry.workflow_id }}</a></td>
+                            <td><a href="{% url 'workflow_details' entry.id %}">{{ entry.workflow_name }}</a></td>
+                            <td>{{ entry.workflow_type }}</td>
+                            <td><a href="/profile/">{{ entry.user.full_name }}</a></td>
+                            <td style="color: #000;">{{ entry.workflow_submission_time }}</td>
+                            <td>
+                                {% if entry.last_status == None %}
+                                <span style="color: blueviolet; font-weight: bold;">RUNNING</span>
+                                {% elif entry.last_status == 'COMPLETED' %}
+                                <span style="color: #2ecc71; font-weight: bold;">COMPLETED</span>
+                                {% elif entry.last_status == 'ABORTED' %}
+                                <span style="color: #e74c3c; font-weight: bold;">ABORTED</span>
+                                {% elif 'Error: HTTP Error 404: Not Found' in entry.last_status %}
+                                <i class="fas fa-circle-notch fa-spin" style="color: #f39c12;"></i>RUNNING
+                                {% elif entry.last_status == 'ERROR' %}
+                                <span style="color: #e67e22; font-weight: bold;">ERROR</span>
+                                {% elif entry.last_status == 'FAILED' %}
+                                <span style="color: #e67e22; font-weight: bold;">FAILED</span>
+                                {% else %}
+                                {{ entry.last_status }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        |||||||||||| IGV CODE ||||||||||||||||||||||||||||
+        <div id="igv-div"></div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get the container div
+                var igvDiv = document.getElementById("igv-div");
+
+                // Options for the IGV browser (passed from Django view)
+                var options = {{ igv_options| safe
+            }};
+
+            // Create the IGV browser
+            var igvBrowser;
+            igv.createBrowser(igvDiv, options)
+                .then(function (browser) {
+                    console.log("Created IGV browser");
+                    // Additional actions or configurations can be added here
+                    igvBrowser = browser;
+
+                    // Use event delegation to handle click events on dynamically added elements
+                    $('#data-table').on('click', '.igv-link', function (event) {
+                        event.preventDefault();
+                        var chrom = $(this).data('chrom');
+                        var pos = $(this).data('pos');
+
+                        // Scroll to the IGV section
+                        var igvSection = document.getElementById("igv-div");
+                        igvSection.scrollIntoView({ behavior: "smooth" });
+
+                        // Call a function to highlight the region in IGV
+                        highlightRegionInIGV(chrom, pos);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Error creating IGV browser:", error);
+                });
+
+            // Function to highlight the region in IGV
+            function highlightRegionInIGV(chrom, pos) {
+                // Check if the IGV browser is available
+                if (igvBrowser) {
+                    // Replace this line with code to set the IGV region based on the clicked CHROM and POS values
+                    igvBrowser.search(chrom + ":" + pos + "-" + pos);
+                } else {
+                    console.error("IGV browser not available.");
+                }
+            }
+});
+        </script>
+
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the container div
+        var igvDiv = document.getElementById("igv-div");
+
+        // Options for the IGV browser (passed from Django view)
+        var options = {{ igv_options|safe }};
+
+        // Create the IGV browser
+        var igvBrowser;
+        igv.createBrowser(igvDiv, options)
+            .then(function (browser) {
+                console.log("Created IGV browser");
+                // Additional actions or configurations can be added here
+                igvBrowser = browser;
+
+                // Listen for chromosome selection change in IGV browser
+                igvBrowser.on('locuschange', function (referenceFrame, change) {
+                    var selectedChromosome = referenceFrame.chrName;
+                    $('#search-input').val(selectedChromosome);
+                    triggerSearch(selectedChromosome);
+                });
+            })
+            .catch(function (error) {
+                console.error("Error creating IGV browser:", error);
+            });
+
+        // Function to trigger search and update table
+        function triggerSearch(chrom) {
+            var searchQuery = chrom;
+            window.location.href = window.location.pathname + '?q=' + searchQuery;
+        }
+
+        // Search button click event handler
+        $('.search-btn').click(function () {
+            var searchQuery = $('#search-input').val();
+            triggerSearch(searchQuery);
+        });
+    });
+</script>

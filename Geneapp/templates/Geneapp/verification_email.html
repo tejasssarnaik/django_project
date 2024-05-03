@@ -1,0 +1,18 @@
+    Hi {{ user.first_name }},
+
+    Thanks for your interest in GeneAssure - GeneAssure is a cutting-edge solution revolutionizing large-scale genomic data analysis. 
+
+    We just need to verify your email address before you can start using GeneAssure.
+
+    Please click on the link below to activate your account:
+
+    http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+    If you have problems, please copy the above URL and paste it into your web browser.
+    Thank you!
+
+    For any issue, contact us at rarevardb@genespectrum.in.
+
+    Best Regards,
+    GeneSpectrum Life Sciences LLP'''
+

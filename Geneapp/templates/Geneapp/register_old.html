@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'static/webfonts' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+
+
+    <title>GeneAssure</title>
+</head>
+
+<body class="bg-gradient-primary">
+
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-6">
+                        <div class="p-4">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-3">Create an Account!</h1>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <div class="alert alert-success" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% elif message.tags == 'error' %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <form class="user" method="post" action="/register/">{% csrf_token %}
+                                <div class="form-group">
+                                    <!-- <label for="exampleFirstName">First Name</label> -->
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        aria-label="First Name" placeholder="Enter your First Name" name="fname"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="exampleLastName">Last Name</label> -->
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        aria-label="Last Name" placeholder="Enter your Last Name" name="lname" required>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="exampleInputEmail">Email Address</label> -->
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        aria-label="Email Address" placeholder="Enter your Email Address" name="email"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="exampleInputPassword">Password</label> -->
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleInputPassword" aria-label="Password" placeholder="Enter a Password"
+                                        name="password1" required>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="exampleRepeatPassword">Repeat Password</label> -->
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleRepeatPassword" aria-label="Repeat Password"
+                                        placeholder="Repeat your Password" name="password2" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </button>
+                                <hr>
+                                <a href="/login/" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="/login/" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a>
+
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/forgot/">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

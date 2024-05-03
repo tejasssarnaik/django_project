@@ -1,0 +1,214 @@
+# theme_linedraw(): a variation on theme_grey() that uses a white background and thin grey grid lines.
+# theme_linedraw(): a theme with only black lines of various widths on white backgrounds, reminiscent of a line drawing.
+# theme_light(): similar to theme_linedraw() but with light grey lines and axes, to direct more attention towards the data.
+# theme_dark(): the dark cousin of theme_light(), with similar line sizes but a dark background. Useful to make thin coloured lines pop out.
+# theme_linedraw(): a minimalistic theme with no background annotations.
+# theme_classic(): a classic-looking theme, with x and y axis lines and no gridlines.
+# theme_void(): a completely empty theme.
+# figtype:
+# scatter -> aggregation*aggregation
+# col/pie -> aggregation*categorical
+# pie/col -> aggregation*1
+# bar/pie -> categorical*categorical
+# voilin/boxplot/histogram/density/freqpoly -> continuous*categorical
+# pie/bar -> categorical*1
+# scatter -> continueous*continuous
+
+#------------------------------------
+# aggregation
+#------------------------------------
+
+#def COUNT(entries):
+#  """Count the variants in groups"""
+#  return len(entries)
+
+
+#def SUM(entries):
+#  """Sum up the values in groups"""
+#  return sum(entries)
+
+#(alias = 'AVG')
+#def MEAN(entries):
+#  """Get the mean of the values"""
+#  if not entries:
+#	  return 0.0
+#  return sum(entries) / len(entries)
+
+#------------------------------------
+# categorical
+#------------------------------------
+#def VARTYPE(variant):
+#  """Variant type, one of deletion, indel, snp or sv"""
+#  return variant.var_type
+
+#def TITV(variant):
+#  """Tell if a variant is a transition or transversion. The variant has to be an snp first."""
+#  if not variant.is_snp:
+#	  return False
+#  return 'transition' if variant.is_transition else 'transversion'
+
+#(alias = 'CHROM')
+#def CONTIG(variant):
+#  """Get the config/chromosome of a variant. Alias: CHROM"""
+#  return variant.CHROM
+
+#(alias = 'GT_TYPEs')
+#def GTTYPEs(variant):
+#  """Get the genotypes(HOM_REF,HET,HOM_ALT,UNKNOWN) of a variant for each sample"""
+#  gttypes = variant.gt_types
+#  return ['HOM_REF'if gttype == 0 else \
+#		  'HET' if gttype == 1 else \
+#		  'HOM_ALT' if gttype == 2 else 'UNKNOWN' for gttype in gttypes]
+
+
+#def FILTER(variant):
+#  """Get the FILTER of a variant."""
+#  return variant.FILTER or 'PASS'
+
+
+#def SUBST(variant):
+#  """Substitution of the variant, including all types of varinat"""
+#  return '{}>{}'.format(variant.REF, ','.join(variant.ALT))
+
+#------------------------------------
+# continueous
+#------------------------------------
+
+#def NALT(variant):
+#  """Number of alternative alleles"""
+#  return len(variant.ALT)
+
+
+#def GQs(variant):
+#  """get the GQ for each sample as a numpy array."""
+#  return variant.gt_quals
+
+
+#def QUAL(variant):
+#  """Variant quality from QUAL field."""
+#  return variant.QUAL
+
+#(alias = 'DPs')
+#def DEPTHs(variant):
+#  """Get the read-depth for each sample as a numpy array."""
+#  return [sum(dp) for dp in variant.format('DP')]
+
+
+#def AAF(variant):
+#  """Alternate allele frequency across samples in this VCF."""
+#  return variant.aaf
+
+
+#def AFs(variant):
+#  """get the freq of alternate reads as a numpy array."""
+#  return variant.gt_alt_freqs
+
+
+#def _ONE(variant):
+#  """Return 1 for a variant, usually used in aggregation, or indication of a distribution plot"""
+#  return 1
+
+
+#---------------------		#---------------------		#---------------------
+# aggregation				# categorical				# continueous
+#---------------------		#---------------------		#---------------------
+# COUNT(entries)			VARTYPE(variant)			NALT(variant)
+# SUM(entries)				TITV(variant)				GQs(variant)
+# MEAN(entries)				CONTIG(variant)/CHROM		QUAL(variant)
+#							GTTYPEs(variant)/GT_TYPEs	DEPTHs(variant)/DPs
+#							FILTER(variant)				AAF(variant)
+#							SUBST(variant)				AFs(variant)
+#														_ONE(variant)
+
+#------------------------------------
+#[[instance]]
+#formula = 'CLNSIG ~ 1'
+#title = 'Clinical Significance'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 1000, height = 1000, res = 100}
+#ggs = 'theme_linedraw()'
+devpars = {width = 1000, height = 1000, res = 100}
+#[[instance]]
+#formula = 'DEPTHs{0} ~ CHROM'
+#title = 'Depth distribution on each chromosome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 1000, height = 1000, res = 100}
+
+#[[instance]]
+#formula = 'AAF ~ CHROM'
+#title = 'Allele frequency distribution on each chromosome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'COUNT(1) ~ CONTIG'
+#title = 'Number of variants on each chromosome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'COUNT(1) ~ CONTIG[1,2,3,4,5]'
+#title = 'Number of variants on each chromosome (first 5)'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'COUNT(1, VARTYPE[snp]) ~ SUBST[A>T,A>G,A>C,T>A,T>G,T>C,G>A,G>T,G>C,C>A,C>T,C>G]'
+#title = 'Number of substitutions of SNPs'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'AAF ~ CONTIG'
+#title = 'Allele frequency on each chromosome (boxplot)'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'AAF ~ CONTIG[1,2]'
+#title = 'Allele frequency on chromosome 1,2'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'AAF ~ 1'
+#title = 'Overall allele frequency distribution'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'VARTYPE ~ CHROM'
+#title = 'Types of variants on each chromosome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'VARTYPE ~ CHROM[1]'
+#title = 'Types of variants on chromosome 1'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'VARTYPE ~ 1'
+#title = 'Types of variants on whole genome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'GTTYPEs[HET,HOM_ALT]{0} ~ CHROM'
+#title = 'Mutant genotypes on each chromosome (sample 1)'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'GTTYPEs[AC_Hemi,AC_Het,AC_Hom]{0} ~ CHROM'
+#title = 'Mutant genotypes on each chromosome modified'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+
+#[[instance]]
+#formula = 'TITV ~ CHROM'
+#title = 'Tell if a variant is a transition or transversion on each chromosome'
+#ggs = 'theme_linedraw()'
+#devpars = {width = 2000, height = 2000, res = 300}
+

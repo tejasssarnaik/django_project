@@ -1,0 +1,99 @@
+#!/bin/bash
+# set -x
+source ./bin/config/colors.conf
+version=v0.0.1a
+
+# Function to source scripts recursively
+source_scripts() {
+    local dir="$1"
+
+    # Source all the bash scripts in the current directory
+    for script in "$dir"/*.sh; do
+        if [ -f "$script" ] && [ "$script" != "$MAIN_SCRIPT" ]; then
+            source "$script"
+        fi
+    done
+
+    # Recursively source scripts in subdirectories
+    for subdir in "$dir"/*/; do
+        source_scripts "$subdir"
+    done
+}
+
+RUN() {
+
+    # Get the directory where this script is located
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    # Main script filename
+    MAIN_SCRIPT="main.sh"
+
+    # Directory containing the main script and other scripts
+    BIN_DIR="$SCRIPT_DIR/bin/"
+
+    # Save the current working directory
+    ORIGINAL_DIR="$(pwd)"
+
+    # Check if the main script exists in the bin directory
+    if [ -f "$BIN_DIR/$MAIN_SCRIPT" ]; then
+        # Change to the bin directory
+        cd "$BIN_DIR"
+
+        # Execute the main script
+        "./$MAIN_SCRIPT"
+
+        # Restore the original working directory
+        cd "$ORIGINAL_DIR"
+
+        # Remove the last entry from the history if it exists
+        if [ "$HISTCMD" -gt 0 ]; then
+            history -d $((HISTCMD - 1))
+        fi
+    else
+        echo "Error: $MAIN_SCRIPT not found in the $BIN_DIR directory"
+        exit 1
+    fi
+}
+
+# To check whether geneassure command has any arguments or not.
+# if Arguments not provided then it prints the help messege.
+[ $# -eq 0 ] && source ./bin/config/README.sh && exit 0
+
+# It check the arguments provided to the geneassure command.
+# Perform task according to the arguments provided.
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    # MANDATORY INPUTS
+    -c | --configFile)
+        shift
+        # Defining a global variable
+        export GA_FQC_CONFIG=$1
+        export GA_TRIM="y"
+        shift
+        ;;
+    run)
+        shift
+        RUN
+        shift
+        ;;
+    -v | --version)
+        shift
+        echo -e "${CYAN}version ${version}"
+        shift
+        ;;
+    -h | --help)
+        source ./bin/config/README.sh | more -d -40
+        exit 0
+        ;;
+    *)
+        # If invalid option is given
+        echo "Invalid option: $1" >&2
+        source ./bin/config/README.sh
+        exit 0
+        ;;
+    esac
+done
+
+unset GA_FQC_CONFIG
+unset GA_TRIM
